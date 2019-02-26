@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 offset-3 text-center">
+            <h1>Mongo Marca</h1>
+            <br>
+            <h3>Click scrape to get the latest articles from Marca, and share your comments with the community. </h3>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-10 offset-1 text-center">
+            {{#each articles}}
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{this.title}}
+                            </h5>
+                            <p class="card-body">
+                                {{this.link}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,15 +1,17 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 offset-3 text-center">
-            <h1>Mongo Marca</h1>
+            <h1>Mongo Statesman</h1>
             <br>
-            <h3>Click scrape to get the latest articles from Marca, and share your comments with the community. </h3>
+            <h3>Click scrape to get the latest articles from the Austin American Statesman, and share your comments with the community. </h3>
         </div>
     </div>
     <br>
+    <button type="button" class="btn btn-primary" id="newScrape">Scrape Statesman!</div>
+    <br>
     <div class="row">
         <div class="col-lg-10 offset-1 text-center">
-            {{#each articles}}
+            {{#each result}}
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
@@ -22,6 +24,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
             {{/each}}
         </div>
     </div>

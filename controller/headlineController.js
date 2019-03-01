@@ -9,17 +9,30 @@ const axios = require("axios");
 // var results = [];
 var db = require("../model");
 router.get("/", function (req, res) {
-    res.render("index");
+    db.Article.find().then(function(dbArticle) {
+        res.render("index", {result: dbArticle});
+    });
+    
 });
 
 router.get("/scrape", function (req, res) {
-    axios.get("https://www.marca.com/futbol.html").then(function(response) {
+    axios.get("https://www.statesman.com/").then(function(response) {
         var $ = cheerio.load(response.data)
 
         $("article").each((i, element) => {
             var result = {};
-            result.title = $(element).children("a").text("title");
-            result.link = $(element).children("a").attr("href");
+            // result.title = $(element).children("a").text("title");
+            if (($(element).find("h3").find("a").text()) !== undefined) {
+                result.title = $(element).find("h3").find("a").text().trim()
+            }
+            if (($(element).find("h3").find("a").attr("href")) !== undefined) {
+                result.link = $(element).find("h3").find("a").attr("href");
+            }
+            // result.link = $(element).children("a").attr("href");
+
+            console.log("result.title: ", result.title);
+            console.log("result.link: ", result.link)
+
             db.Article.create(result)
             .then((dbArticle) => console.log(dbArticle))
             .catch((err) => console.log(err));
